@@ -52,12 +52,12 @@ RUN echo "export PYTHONPATH=\${PYTHONPATH}:crazyswarm/ros_ws/src/crazyswarm/scri
 # Build CrazyFly
 COPY protocols /etc
 COPY /ros_ws /ros_ws
-COPY AbstractVirtualCapability.py ros_ws/src/isse_crazy
-COPY IsseCrazyCopter.py ros_ws/src/isse_crazy
+COPY AbstractVirtualCapability.py ros_ws/src/isse_crazy_swarm
+COPY IsseCrazySwarm.py ros_ws/src/isse_crazy_swarm
 
 RUN source crazyfly/isse_ws/devel/setup.bash && cd /ros_ws && catkin_make
 
 ENTRYPOINT ["/ros_entrypoint.sh"]
 
 
-CMD source /crazyswarm/ros_ws/devel/setup.bash && source /ros_ws/devel/setup.bash && roslaunch isse_crazy crazyfly.launch semantix_port:=${semantix_port}
+CMD source /crazyswarm/ros_ws/devel/setup.bash && source /ros_ws/devel/setup.bash && roslaunch isse_crazy_swarm crazy_swarm.launch semantix_port:=${semantix_port}
