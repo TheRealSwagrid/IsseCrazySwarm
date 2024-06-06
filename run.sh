@@ -9,6 +9,8 @@ source /opt/ros/noetic/setup.bash
 echo -e "# Crazyradio (normal operation) \nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1915\", ATTRS{idProduct}==\"7777\", MODE=\"0664\", GROUP=\"plugdev\" \n# Bootloader \nSUBSYSTEM==\"usb\", ATTRS{idVendor}==\"1915\", ATTRS{idProduct}==\"0101\", MODE=\"0664\", GROUP=\"plugdev\"" | sudo tee /etc/udev/rules.d/99-crazyradio.rules
 echo -e "SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"5740\", MODE=\"0664\", GROUP=\"plugdev\"" | sudo tee /etc/udev/rules.d/99-crazyflie.rules
 
+$CSW_PYTHON -m pip install pytest numpy=="1.24.0" PyYAML scipy pyaudio playsound
+
 cd "crazyswarm/ros_ws/src/crazyswarm/scripts/pycrazyswarm/cfsim" && make
 
 cd "$ROOT/crazyswarm/ros_ws" && catkin_make -DCMAKE_BUILD_TYPE=RelWithDebInfo
